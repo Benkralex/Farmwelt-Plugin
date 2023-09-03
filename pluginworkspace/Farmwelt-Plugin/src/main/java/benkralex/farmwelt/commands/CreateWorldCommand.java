@@ -29,11 +29,8 @@ public class CreateWorldCommand implements CommandExecutor {
                         p.sendMessage("Welttypen: overworld / end / nether");
                         return true;
                     }
-                    if ("false".equalsIgnoreCase(args[2])) {
-                        CreateWorld.createWorld(worldname, worldgenerator, true, p);
-                    } else {
-                        CreateWorld.createWorld(worldname, worldgenerator, false, p);
-                    }
+                    CreateWorld.createWorld(worldname, worldgenerator, "false".equalsIgnoreCase(args[2]), p);
+                    p.sendMessage(ChatColor.GREEN + "Welt wurde erstellt");
                 } else {
                     p.sendMessage("Usage: /createworld <Weltname> <Dimension> [true/false: private world]");
                 }
