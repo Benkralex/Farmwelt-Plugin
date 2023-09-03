@@ -1,0 +1,4 @@
+name: Farmwelt-Plugin
+version: '${project.version}'
+main: benkralex.farmwelt.Farmwelt
+api-version: '1.20'
