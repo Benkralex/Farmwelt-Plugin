@@ -3,18 +3,25 @@ version: '${project.version}'
 main: benkralex.farmwelt.Farmwelt
 api-version: '1.20'
 permissions:
-  farmwelt.create:
+  farm.create:
     default: op
-  farmwelt.tp:
-    default: true;
+  farm.tp:
+    default: true
+  farm.delete:
+    default: op
 commands:
-  createworld:
+  createfarmworld:
     description: "Erstellt neue Welten"
-    usage: "/createworld <Weltname> <Dimension> [true/false: private world]"
-    aliases: "cworld"
-    permission: "farmwelt.create"
-  farmwelttp:
+    usage: "/createfarmworld <Weltname> <Dimension> [true/false: private world]"
+    aliases: "createfarm"
+    permission: "farm.create"
+  farmworld:
     description: "Teleportiert dich zu einer Welt"
-    usage: "/farmwelttp <Weltname>"
-    aliases: ["tpworld", "tpw"]
-    permission: "farmwelt.tp"
+    usage: "/farmworld <Weltname>"
+    aliases: "farm"
+    permission: "farm.tp"
+  deletefarmworld:
+    description: "Löscht eine Welt"
+    usage: "/deletefarmworld"
+    aliases: ["delfarm", "deletefarm"]
+    permission: "farm.delete"

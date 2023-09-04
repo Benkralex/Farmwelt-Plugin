@@ -6,11 +6,12 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 
 import java.io.File;
+import java.util.Dictionary;
 
 public class DeleteWorld {
     public static void deleteWorld(String name) {
         Bukkit.unloadWorld(name, false);
-        File worldornder = new File(Bukkit.getWorldContainer(), name);
-        worldornder.delete();
+        File worldDictionary = new File(Bukkit.getWorldContainer(), name);
+        worldDictionary.delete();
     }
 }

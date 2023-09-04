@@ -26,10 +26,10 @@ public class CreateWorld {
             NamespacedKey worlds = new NamespacedKey(Farmwelt.plugin, "worlds");
             PersistentDataContainer pdcworlds = pdc.getOrDefault(worlds, PersistentDataType.TAG_CONTAINER, pdc.getAdapterContext().newPersistentDataContainer());
             pdcworlds.set(new NamespacedKey(Farmwelt.plugin, name), PersistentDataType.TAG_CONTAINER, pdcworlds.getAdapterContext().newPersistentDataContainer());
-            World w = Bukkit.createWorld(creator);
-            p.teleport(w.getSpawnLocation());
         } else {
             Config.createDefault(name, "true");
         }
+        World w = Bukkit.createWorld(creator);
+        p.teleport(w.getSpawnLocation());
     }
 }

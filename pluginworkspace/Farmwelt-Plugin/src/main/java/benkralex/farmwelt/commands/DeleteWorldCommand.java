@@ -1,8 +1,9 @@
 package benkralex.farmwelt.commands;
 
-import benkralex.farmwelt.worldmanager.TpWorld;
+import benkralex.farmwelt.worldmanager.CreateWorld;
+import benkralex.farmwelt.worldmanager.DeleteWorld;
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -13,23 +14,21 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TpWorldCommand implements CommandExecutor, TabCompleter {
+public class DeleteWorldCommand implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
             Player p = (Player) sender;
-            if (p.hasPermission("farm.tp")) {
+            if (p.hasPermission("farm.delete")) {
                 if (args.length >= 1) {
-                    if (Bukkit.getWorld(args[0]) == null) {
-                        sender.sendMessage(ChatColor.RED + "Welt nicht gefunden");
-                        return true;
-                    }
-                    TpWorld.tpWorld(p, Bukkit.getWorld(args[0]));
-                    }
+                    DeleteWorld.deleteWorld((args[0]));
                 } else {
-                    p.sendMessage("Usage: /farmworld <Weltname>");
+                    p.sendMessage("Usage: /deletefarmworld <Weltname>");
                 }
-        } else {
+            } else {
+                p.sendMessage(ChatColor.RED + "Du hast keine Berechtigung dazu");
+            }
+        }else {
             sender.sendMessage("Nur Spieler können diesen Command ausführen");
         }
         return true;
