@@ -1,6 +1,7 @@
 package benkralex.farmwelt.listeners;
 
 import benkralex.farmwelt.Farmwelt;
+import benkralex.farmwelt.config.Config;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
@@ -13,16 +14,14 @@ import java.util.List;
 
 public class ListenerWorldChange implements Listener {
     public static void onWorldChange(PlayerChangedWorldEvent e) {
-        if (e.getFrom().getName().equals("world")) {
+        if (e.getFrom().getName().equals(Config.getMainWorld())) {
             Player p = e.getPlayer();
             PersistentDataContainer pdc = p.getPersistentDataContainer();
-            if (!pdc.has(new NamespacedKey(Farmwelt.plugin, "lastoverworldlocation"), PersistentDataType.INTEGER_ARRAY)) {
-                int[] xyz = new int[3];
-                xyz[0] = p.getLocation().getBlockX();
-                xyz[1] = p.getLocation().getBlockY();
-                xyz[2] = p.getLocation().getBlockZ();
-                pdc.set(new NamespacedKey(Farmwelt.plugin, "lastoverworldlocation"), PersistentDataType.INTEGER_ARRAY, xyz);
-            }
+            int[] xyz = new int[3];
+            xyz[0] = p.getLocation().getBlockX();
+            xyz[1] = p.getLocation().getBlockY();
+            xyz[2] = p.getLocation().getBlockZ();
+            pdc.set(new NamespacedKey(Farmwelt.plugin, "lastoverworldlocation"), PersistentDataType.INTEGER_ARRAY, xyz);
         }
     }
 }

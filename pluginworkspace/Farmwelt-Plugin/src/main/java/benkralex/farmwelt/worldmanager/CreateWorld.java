@@ -12,7 +12,7 @@ public class CreateWorld {
     public static final World.Environment NETHER  = World.Environment.NETHER;
     public static final World.Environment END = World.Environment.THE_END;
 
-    public static void createWorld(String name, World.Environment generation, boolean publicworld, Player p) {
+    public static void createWorld(String name, World.Environment generation, Player p) {
         if (Bukkit.getWorld(name) != null) {
             p.sendMessage(ChatColor.RED + "Welt mit diesem Namen existiert bereits");
             return;
@@ -21,14 +21,6 @@ public class CreateWorld {
         name.replace(" ", "");
         WorldCreator creator = new WorldCreator(name);
         creator.environment(generation);
-        if (!publicworld) {
-            PersistentDataContainer pdc = p.getPersistentDataContainer();
-            NamespacedKey worlds = new NamespacedKey(Farmwelt.plugin, "worlds");
-            PersistentDataContainer pdcworlds = pdc.getOrDefault(worlds, PersistentDataType.TAG_CONTAINER, pdc.getAdapterContext().newPersistentDataContainer());
-            pdcworlds.set(new NamespacedKey(Farmwelt.plugin, name), PersistentDataType.TAG_CONTAINER, pdcworlds.getAdapterContext().newPersistentDataContainer());
-        } else {
-            Config.createDefault(name, "true");
-        }
         World w = Bukkit.createWorld(creator);
         p.teleport(w.getSpawnLocation());
     }

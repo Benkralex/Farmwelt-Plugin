@@ -33,13 +33,10 @@ public class CreateWorldCommand implements CommandExecutor, TabCompleter {
                         p.sendMessage("Welttypen: Overworld / Nether / End");
                         return true;
                     }
-                    if (!(args.length >= 3)) {
-                        CreateWorld.createWorld(worldname, worldgenerator, true, p);
-                    }
-                    CreateWorld.createWorld(worldname, worldgenerator, "false".equalsIgnoreCase(args[2]), p);
+                    CreateWorld.createWorld(worldname, worldgenerator, p);
                     p.sendMessage(ChatColor.GREEN + "Welt wurde erstellt");
                 } else {
-                    p.sendMessage("Usage: /createfarmworld <Weltname> <Dimension> [true/false: private world]");
+                    p.sendMessage("Usage: /createfarmworld <Weltname> <Dimension>");
                 }
             } else {p.sendMessage(ChatColor.RED + "Du hast keine Berechtigung dazu");}
         }else {
@@ -57,9 +54,6 @@ public class CreateWorldCommand implements CommandExecutor, TabCompleter {
             list.add("Overworld");
             list.add("Nether");
             list.add("End");
-        } else if (args.length == 3) {
-            list.add("true");
-            list.add("false");
         } else {
             return list;
         }

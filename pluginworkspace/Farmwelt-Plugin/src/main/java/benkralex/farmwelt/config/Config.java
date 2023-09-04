@@ -8,17 +8,21 @@ public class Config {
 
     public static void createConfig() {
         config.options().copyDefaults(true);
-        //config.addDefault("" , );
+        config.addDefault("allow-randomteleport" , true);
+        config.addDefault("overworldname", "world");
         Farmwelt.plugin.saveConfig();
     }
 
-    public static void createDefault(String defaultname, String value) {
-        config.options().copyDefaults(true);
-        config.addDefault(defaultname, value);
+    public static boolean getAllowRtp() {
+        return config.getBoolean("allow-randomteleport");
+    }
+
+    public static void setAllowRtp(boolean b) {
+        config.addDefault("allow-randomteleport" , b);
         Farmwelt.plugin.saveConfig();
     }
 
-    public static String getDefault(String defaultname) {
-        return config.getString(defaultname);
+    public static String getMainWorld() {
+        return config.getString("overworldname");
     }
 }
